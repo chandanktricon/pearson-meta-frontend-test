@@ -1,4 +1,6 @@
 import React from "react";
+import Avatar from '../controls/avatar';
+import Button from '../controls/button';
 
 export default class User extends React.PureComponent {
   constructor(props) {
@@ -13,12 +15,24 @@ export default class User extends React.PureComponent {
     return (
       <div className="user">
         <div className="user__profile">
-          <img className="user__avatar" src={this.props.user.avatar} />
+          <Avatar 
+            className="user__avatar"
+            size={80}
+            src={this.props.user.avatar}
+          />
+
           <br/>
           <br/>
           <p>{this.props.user.first_name + ' ' + this.props.user.last_name}</p>
         </div>
-        <div className="user__delete" onClick={this.deleteUser}>Delete</div>
+
+        <Button
+          className="user__delete" 
+          type="label"
+          onClick={this.deleteUser}
+        >Delete
+        </Button>
+
       </div>
     );
   }

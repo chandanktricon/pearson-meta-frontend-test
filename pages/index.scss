@@ -43,18 +43,13 @@ $depth-color: #d8d8d8;
 
       .user__avatar{
         margin-top: -40px;
-        height: 80px;
-        width: 80px;
-        border-radius: 40px;
         display: inline-block;
       }
     }
     
     .user__delete{
-      font-size: 14px;
       position: relative;
-      bottom: -25px;
-      left: 5px;
+      bottom: -20px;
     }
   }
 }
@@ -64,31 +59,19 @@ $depth-color: #d8d8d8;
   .add-user-form__label{
     display: inline-block;
     margin: 12px 10px;
-    font-size: 14px;
   }
 
-  .add-user-form__name-textbox {
-    outline: 0;
+  .add-user-form__firstname, .add-user-form__lastname {
     height: 33px;
     width: 323px;
-    font-size: 16px;
-    padding: 5px;
-    border: 1px solid #979797;
     border-radius: 14px;
     display: block;
   }
 
   .add-user-form__add-user-btn {
-    outline: 0;
-    border: 0;
     margin: 32px 0;
     height: 44px;
     width: 149px;
-    color: white;
-    background-color: $primary-color;
-    font-size: 18px;
-    border-radius: 14px;
-    cursor: pointer;
   }
 }
 
