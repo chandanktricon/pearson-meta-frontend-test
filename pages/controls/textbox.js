@@ -17,8 +17,8 @@ export default class Textbox extends React.PureComponent {
 
     return (
       <input 
-        className={this.props.className}
         type="text"
+        className={this.props.className}
         style={Object.assign(defaultStyle, this.props.style || {})}
         name={this.props.name}
         onChange={this.props.onChange}

@@ -21,8 +21,8 @@ describe("Textbox Control", () => {
     
     expect(component.find('input').props().value).to.eql('abc');
 
-    component.find('input').simulate('change',  { target: { value: 'xyz' } });
+    component.simulate('change',  { target: { value: 'xyz' } });
     expect(onChangeSpy.calledOnce).to.eql(true);
-    // expect(component.find('input').props().value).to.eql('xyz'); /// not sure why not working
+    // expect(component.props().value).to.eql('xyz'); /// not sure why not working
   });
 });

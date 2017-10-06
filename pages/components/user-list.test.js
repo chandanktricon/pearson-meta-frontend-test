@@ -5,11 +5,9 @@ import UserList from "./user-list";
 
 describe("UserList component", () => {
   it("should render without any issue", () => {
-    const onClickSpy = sinon.spy();
     const component = shallow(
       <UserList
         users={InitialUsers}
-        deleteUser={onClickSpy}
       />
     );
 
@@ -23,5 +21,23 @@ describe("UserList component", () => {
 
   it("should render list of User components when users props is having at least one user data", () => {
     expect(shallow(<UserList users={InitialUsers} />).find(User).exists()).eql(true);
+  });
+
+  it("should be able to delete any user in list using delete button", () => {
+    const onClickSpy = sinon.spy();
+    const component = shallow(
+      <UserList
+        users={InitialUsers}
+        deleteUser={onClickSpy}
+      />
+    );
+
+    let initialUsersCount = InitialUsers.length;
+
+    expect(component.find(User).length).to.eql(initialUsersCount);
+
+    component.find('.user__delete').first().simulate('click');
+
+    expect(component.find(User).length).to.eql(initialUsersCount - 1);
   });
 });
