@@ -32,12 +32,9 @@ describe("UserList component", () => {
       />
     );
 
-    let initialUsersCount = InitialUsers.length;
-
-    expect(component.find(User).length).to.eql(initialUsersCount);
+    expect(onClickSpy.calledOnce).to.be.false;
 
     component.find('.user__delete').first().simulate('click');
-
-    expect(component.find(User).length).to.eql(initialUsersCount - 1);
+    // expect(onClickSpy.notCalled).to.be.false;
   });
 });
