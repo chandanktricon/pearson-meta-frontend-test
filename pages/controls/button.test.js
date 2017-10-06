@@ -15,7 +15,7 @@ describe("Button Control", () => {
     expect(component.find('button').hasClass('cls')).to.be.true;
   });
 
-  it("should handle click normally", () => {
+  it("click event should work normally", () => {
     const onClickSpy = sinon.spy();
     const component = shallow(
       <Button

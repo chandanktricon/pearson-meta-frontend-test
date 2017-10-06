@@ -10,7 +10,7 @@ describe("Textbox Control", () => {
     expect(component.find('input[type="text"]').hasClass('cls')).to.be.true;
   });
 
-  it("should render as per given props", () => {
+  it("onChange event should be triggered & propagated normally", () => {
     const onChangeSpy = sinon.spy();
     const component = shallow(
       <Textbox

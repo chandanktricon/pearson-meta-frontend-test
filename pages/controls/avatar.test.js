@@ -20,7 +20,7 @@ describe("Avatar Control", () => {
     expect(componentWithTitle.find('img').props().title).to.eql('new-avatar');
   });
 
-  it("source of image loads properly", () => {
+  it("image source should loads properly", () => {
     const component = shallow(
       <Avatar
         src="www.abc.com/profile.png"
