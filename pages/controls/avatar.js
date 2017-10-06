@@ -14,6 +14,7 @@ export default class Label extends React.PureComponent {
 
     return (      
       <img
+        title={this.props.title || "avatar"}
         className={this.props.className}
         style={ Object.assign(defaultStyle, this.props.style || {})}
         src={this.props.src}

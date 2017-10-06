@@ -42,7 +42,7 @@ export default class Button extends React.PureComponent {
 
     return (
       <button 
-        className={this.props.className}
+        className={this.props.className || ''}
         style={ Object.assign(defaultStyle, this.props.style || {})}
         onClick={this.props.onClick}
       >
