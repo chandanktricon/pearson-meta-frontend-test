@@ -68,7 +68,7 @@ export default class AddUserForm extends React.PureComponent {
         
         <Button
           className="add-user-form__add-user-btn"
-          type="flat"
+          type="roundFilled"
           onClick={this.addUser}
         >Add User
         </Button>

@@ -1,4 +1,4 @@
-import { capFirstLetter } from './stringer';
+import { capFirstLetter, deepTrim } from './stringer';
 
 describe('capFirstLetter function', () => {
   it("should capitalize first letter of every word in a phrase", () => {
@@ -8,6 +8,13 @@ describe('capFirstLetter function', () => {
   it('should make every letter other than first letter of word, to small case', () => {
     expect(capFirstLetter('whaTEVER')).to.eql('Whatever');
   });
+
+  it('should trim multiple whitespaces before, in-between and after words', () => {
+    expect(capFirstLetter('   no   extra    space    ')).to.eql('No Extra Space');
+  });
+});
+
+describe('deepTrim function', () => {
 
   it('should trim multiple whitespaces before, in-between and after words', () => {
     expect(capFirstLetter('   no   extra    space    ')).to.eql('No Extra Space');

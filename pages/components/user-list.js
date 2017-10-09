@@ -1,5 +1,6 @@
 import React from "react";
 import User from './user';
+import Pagination from './pagination';
 
 export default class UserList extends React.PureComponent {
   constructor(props) {
@@ -9,14 +10,21 @@ export default class UserList extends React.PureComponent {
   render() {
     return (
       <div className="user-list row">
+
         {this.props.users.map(user =>
-          <User 
+          <User
             key={user.id}
             userId={user.id}
-            user={user} 
+            user={user}
             deleteUser={this.props.deleteUser}
           />
         )}
+        
+        <Pagination
+          currPage={this.props.currPage}
+          totalPages={this.props.totalPages}
+          fetchUsers={this.props.fetchUsers}
+        />
       </div>
     );
   }
