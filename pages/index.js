@@ -1,7 +1,7 @@
 import React from "react";
 import AddUserForm from './components/add-user-form';
 import UserList from './components/user-list'
-import InitialUsers from './utils/initial-users';
+import http from './utils/fetch';
 
 export default class C3 extends React.PureComponent {
   constructor(props) {
@@ -12,34 +12,40 @@ export default class C3 extends React.PureComponent {
       currPage: 1,
       totalPages: 1,
     };
+
+    this.fetchUsers = this.fetchUsers.bind(this);
   }
 
   componentDidMount() {
     this.fetchUsers(1);
   }
 
-  fetchUsers = (pageNumber) => {
-    fetch(`https://reqres.in/api/users?page=${pageNumber}&&per_page=4`)
-      .then(res => res.json())
-      .then(data => {
-        this.setState({
-          users: data.data,
-          currPage: data.page,
-          totalPages: data.total_pages,
-        });
-      })
-      .catch(e => console.log(e));
+  fetchUsers(pageNumber) {
+    let url = `https://reqres.in/api/users?page=${pageNumber}&&per_page=4`;
+
+    http.get(url, data => {
+      this.setState({
+        users: data.data,
+        currPage: data.page,
+        totalPages: data.total_pages,
+      });
+    });
   }
 
   addUser = (newUser) => {
-    this.setState({
-      users: [...this.state.users, newUser]
+    let url = `https://reqres.in/api/users`;
+
+    http.post(url, newUser, data => {
+      newUser.id = data.id;
+      this.setState({
+        users: [...this.state.users, newUser]
+      });
     });
   }
 
   deleteUser = (userId) => {
     let users = this.state.users.filter(user => user.id !== userId);
-    if(users.length)
+    if (users.length)
       this.setState({ users: users });
     else
       this.fetchUsers(this.state.currPage - 1);

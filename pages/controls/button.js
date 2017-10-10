@@ -1,6 +1,5 @@
 import React from "react";
 import { objMerge } from '../utils/objMerge';
-import { deepTrim } from '../utils/stringer';
 
 export default class Button extends React.PureComponent {
   constructor(props) {

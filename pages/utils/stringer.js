@@ -9,4 +9,4 @@ function deepTrim(string) {
   return string.replace(/\s+/g, " ").trim();
 }
 
-export { capFirstLetter };
+export { capFirstLetter, deepTrim };
