@@ -1,5 +1,5 @@
 import React from "react";
-import Button from '../controls/button';
+import Button from '../elements/button';
 
 export default class Pagination extends React.PureComponent {
   constructor(props) {
@@ -15,7 +15,7 @@ export default class Pagination extends React.PureComponent {
           disabled={this.props.currPage === 1}
           onClick={
             (this.props.currPage === 1) ?
-              null : () => { this.props.fetchUsers(this.props.currPage - 1); }
+              null : () => { this.props.getUsers(this.props.currPage - 1); }
           }
         >
           &#60;
@@ -27,7 +27,7 @@ export default class Pagination extends React.PureComponent {
             isSmall={true}
             type={(this.props.currPage == i + 1) ? 'flatFilled' : 'flat'}
             key={i}
-            onClick={() => { this.props.fetchUsers(i + 1); }}
+            onClick={() => { this.props.getUsers(i + 1); }}
           >
             {i + 1}
           </Button>
@@ -39,7 +39,7 @@ export default class Pagination extends React.PureComponent {
           disabled={this.props.currPage === this.props.totalPages}
           onClick={
             (this.props.currPage === this.props.totalPages) ?
-              null : () => { this.props.fetchUsers(this.props.currPage + 1); }
+              null : () => { this.props.getUsers(this.props.currPage + 1); }
           }
         >
           &#62;

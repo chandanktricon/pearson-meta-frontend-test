@@ -1,6 +1,6 @@
 import React from "react";
-import Avatar from '../controls/avatar';
-import Button from '../controls/button';
+import Avatar from '../elements/avatar';
+import Button from '../elements/button';
 
 export default class User extends React.PureComponent {
   constructor(props) {

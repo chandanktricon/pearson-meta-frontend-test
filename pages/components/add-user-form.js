@@ -1,9 +1,9 @@
 import React from "react";
 import { capFirstLetter } from '../utils/stringer';
 import { getId } from '../utils/id-gen';
-import Button from '../controls/button';
-import Textbox from '../controls/textbox';
-import Label from '../controls/label';
+import Button from '../elements/button';
+import Textbox from '../elements/textbox';
+import Label from '../elements/label';
 
 export default class AddUserForm extends React.PureComponent {
   constructor(props) {

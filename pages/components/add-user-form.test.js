@@ -1,7 +1,7 @@
 import { shallow } from "enzyme";
 import AddUserForm from "./add-user-form";
-import Textbox from '../controls/textbox';
-import Button from '../controls/button';
+import Textbox from '../elements/textbox';
+import Button from '../elements/button';
 
 describe("AddUserForm Component", () => {
   it("should render without any issue", () => {

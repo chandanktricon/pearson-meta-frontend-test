@@ -1,6 +1,6 @@
 import { shallow } from "enzyme";
 import Pagination from './pagination';
-import Button from '../controls/button';
+import Button from '../elements/button';
 
 describe("Pagination component", () => {
   it("should render without any issue", () => {
@@ -9,7 +9,7 @@ describe("Pagination component", () => {
       <Pagination
         currPage={3}
         totalPages={6}
-        fetchUsers={onClickSpy}
+        getUsers={onClickSpy}
       />
     );
 
@@ -29,7 +29,7 @@ describe("Pagination component", () => {
       <Pagination
         currPage={1}
         totalPages={6}
-        fetchUsers={onClickSpy}
+        getUsers={onClickSpy}
       />
     );
 
@@ -48,7 +48,7 @@ describe("Pagination component", () => {
       <Pagination
         currPage={2}
         totalPages={6}
-        fetchUsers={onClickSpy}
+        getUsers={onClickSpy}
       />
     );
 
@@ -67,7 +67,7 @@ describe("Pagination component", () => {
       <Pagination
         currPage={6}
         totalPages={6}
-        fetchUsers={onClickSpy}
+        getUsers={onClickSpy}
       />
     );
 

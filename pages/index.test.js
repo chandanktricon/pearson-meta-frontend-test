@@ -3,14 +3,14 @@ import Index from "./index";
 import UserList from "./components/user-list";
 import AddUserForm from "./components/add-user-form";
 
-describe.only("Index", () => {
+describe("Index", () => {
   afterEach(() => {
     sinon.restore();
   });
   const component = shallow(<Index />);
 
   it("Should render without any issue", () => {
-    expect(component.hasClass("root")).to.eql(true);
+    expect(component.hasClass("root")).to.be.true;
   });
 
   it("Should have Pearson User Management header", () => {
@@ -18,56 +18,54 @@ describe.only("Index", () => {
   });
 
   it("Should have UserList component", () => {
-    expect(component.find(UserList).exists()).to.eql(true);
+    expect(component.find(UserList).exists()).to.be.true;
   });
 
   it("Should have AddUserForm component", () => {
-    expect(component.find(AddUserForm).exists()).to.eql(true);
+    expect(component.find(AddUserForm).exists()).to.be.true;
   });
 
-  it("Should call fetchUsers and get back some data", () => {
-    sinon
-      .stub(global, "fetch")
-      .withArgs("https://reqres.in/api/users?page=2")
-      .returns(
-        Promise.resolve({
-          json: () =>
-            Promise.resolve({
-              data: [
-                {
-                  id: 1,
-                  first_name: "George",
-                  last_name: "Bluth",
-                  avatar:
-                    "https://s3.amazonaws.com/uifaces/faces/twitter/calebogden/128.jpg"
-                },
-                {
-                  id: 2,
-                  first_name: "Janet",
-                  last_name: "Weaver",
-                  avatar:
-                    "https://s3.amazonaws.com/uifaces/faces/twitter/josephstein/128.jpg"
-                },
-                {
-                  id: 3,
-                  first_name: "Emma",
-                  last_name: "Wong",
-                  avatar:
-                    "https://s3.amazonaws.com/uifaces/faces/twitter/olegpogodaev/128.jpg"
-                }
-              ]
-            })
-        })
-      );
+  it("Should call getUsers when Index is mounted", () => {
 
     const componentDidMountSpy = sinon.spy(
       Index.prototype,
       "componentDidMount"
     );
-    const fetchUserSpy = sinon.spy(Index.prototype, "fetchUsers");
+    const getUsersSpy = sinon.spy(Index.prototype, "getUsers");
 
-    const componentTwo = mount(<Index />);
+    const component = mount(<Index />);
     expect(componentDidMountSpy.called).to.be.true;
-    expect(fetchUserSpy.called).to.be.true;
+    expect(getUsersSpy.called).to.be.true;
+  });
+
+  it("Should invoke addUser function when called from add-user-form component", () => {
+
+    const addUserSpy = sinon.spy(Index.prototype, "addUser");
+
+    const component = mount(<Index />);
+
+    component.find('.add-user-form__firstname').simulate('change', { target: { value: 'abc' } });
+    component.find('.add-user-form__lastname').simulate('change', { target: { value: 'xyz' } });
+    component.find('.add-user-form__add-user-btn').simulate("click");
+
+    expect(addUserSpy.calledOnce).to.be.true;
+  });
+
+  it("Should invoke deleteUser function when called from user-list component", () => {
+    
+    const deleteUserSpy = sinon.spy(Index.prototype, "deleteUser");
+
+    const component = mount(<Index />);
+    component.setState({
+      users: [{
+        "id": 1,
+        "first_name": "George",
+        "last_name": "Bluth",
+        "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/calebogden/128.jpg"
+      }]
+    });
+    
+    component.find('.user__delete').first().simulate('click');
+    expect(deleteUserSpy.calledOnce).to.be.true;
   });
 });

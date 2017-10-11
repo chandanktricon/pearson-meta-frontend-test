@@ -13,14 +13,16 @@ export default class C3 extends React.PureComponent {
       totalPages: 1,
     };
 
-    this.fetchUsers = this.fetchUsers.bind(this);
+    this.getUsers = this.getUsers.bind(this);
+    this.addUser = this.addUser.bind(this);
+    this.deleteUser = this.deleteUser.bind(this);
   }
 
   componentDidMount() {
-    this.fetchUsers(1);
+    this.getUsers(1);
   }
 
-  fetchUsers(pageNumber) {
+  getUsers(pageNumber) {
     let url = `https://reqres.in/api/users?page=${pageNumber}&&per_page=4`;
 
     http.get(url, data => {
@@ -32,7 +34,7 @@ export default class C3 extends React.PureComponent {
     });
   }
 
-  addUser = (newUser) => {
+  addUser(newUser) {
     let url = `https://reqres.in/api/users`;
 
     http.post(url, newUser, data => {
@@ -43,12 +45,12 @@ export default class C3 extends React.PureComponent {
     });
   }
 
-  deleteUser = (userId) => {
+  deleteUser(userId) {
     let users = this.state.users.filter(user => user.id !== userId);
     if (users.length)
       this.setState({ users: users });
     else
-      this.fetchUsers(this.state.currPage - 1);
+      this.getUsers(this.state.currPage - 1);
   }
 
   render() {
@@ -61,7 +63,7 @@ export default class C3 extends React.PureComponent {
           users={this.state.users}
           currPage={this.state.currPage}
           totalPages={this.state.totalPages}
-          fetchUsers={this.fetchUsers}
+          getUsers={this.getUsers}
           deleteUser={this.deleteUser}
         />
         <AddUserForm

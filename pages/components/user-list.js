@@ -23,7 +23,7 @@ export default class UserList extends React.PureComponent {
         <Pagination
           currPage={this.props.currPage}
           totalPages={this.props.totalPages}
-          fetchUsers={this.props.fetchUsers}
+          getUsers={this.props.getUsers}
         />
       </div>
     );
